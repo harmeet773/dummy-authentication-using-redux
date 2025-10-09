@@ -5,18 +5,20 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { BrowserRouter } from 'react-router-dom';
 import store from './store.js';
+import { Provider } from 'react-redux';
    
 
    
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    
+    <Provider store={store}>
     <BrowserRouter>
     <div className='container mt-1'>
     <App />
     </div>
     </BrowserRouter>
+    </Provider>
   </StrictMode>,
 )    
      
