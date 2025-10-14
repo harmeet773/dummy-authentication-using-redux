@@ -1,15 +1,14 @@
 import { configureStore, createReducer } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
-import { counterAppReducer } from "./counterApp/CounterApp";
 
-// it should be a function so change it 
+import {userDetails, userLoginReducer } from "./components/Login";
 
-const rootReducer = combineReducers({
-  counter: counterAppReducer,
-});     
-
+const preloadedState = {
+  userReducer: {  
+    isAuthenticated: false
+  }}
 
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: { userReducer :userLoginReducer },
 });
 export default store;
