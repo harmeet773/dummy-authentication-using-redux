@@ -1,5 +1,6 @@
 {
-  "name": "dummy-authentication-using-redux",
+  "name": "dummy-authentication-using-redux", 
+  "homepage": "https://harmeet773.github.io/dummy-authentication-using-redux",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,7 +8,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy" : "npm run build",
+    "deploy" : "gh-pages -d dist"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.9.0",
