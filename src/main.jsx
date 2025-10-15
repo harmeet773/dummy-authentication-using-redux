@@ -10,7 +10,7 @@ import { Provider } from 'react-redux';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
-    <BrowserRouter>
+    <BrowserRouter  basename="dummy-authentication-using-redux"  >
     <div className='container mt-1'>
     <App />   
     </div>    
