@@ -10,8 +10,8 @@ const Home = () => {
             <p> This app is using api's from https://dummyjson.com/ for authentication.
                 Login component fetches access token and refresh token from 'https://dummyjson.com/auth/login' 
                 by provideing user credentials and stores in it redux store.
-                </p>
-                <p> Profile component fetches user data from 'https://dummyjson.com/auth/me' by providing access token</p>
+            </p>
+            <p> Profile component fetches user data from 'https://dummyjson.com/auth/me' by providing access token</p>
 
         </div>
     );
