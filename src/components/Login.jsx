@@ -1,21 +1,21 @@
-import React from "react";
-import { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { createReducer } from "@reduxjs/toolkit";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-const userDetails = {};
-const userLoginReducer = createReducer(userDetails, (builder) => {
+
+const getUserDetails = {};
+const userLoginReducer = createReducer(getUserDetails, (builder) => {
   builder
-    .addCase("addUserDetails", (state, action) => {
-      console.log("addUserDetails executed");
-      return { ...action.payload };
+    .addCase("updateUserDetails", (state, action) => {
+      //console.log("updateUserDetails executed");
+      return { ...state,...action.payload };
     })
-    .addCase("userDetails", (state, action) => {
+    .addCase("getUserDetails", (state, action) => {
       return state;
-    })
+    });
 });
-export { userLoginReducer, userDetails };
+export { userLoginReducer, getUserDetails };
+
 const Login = () => {
   const navigate = useNavigate();
   const emailRef = useRef();
@@ -24,7 +24,7 @@ const Login = () => {
   const [displayMessage, setDisplayMessage] = useState("");
   const authenticateUser = (email, password) => {
     setDisplayMessage("");
-    console.log("Authenticating user with email:", email);
+    //console.log("Authenticating user with email:", email);
     fetch("https://dummyjson.com/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -32,18 +32,23 @@ const Login = () => {
     })
       .then(async (res) => {
         if (!res.ok) {
-          // res.ok is false for status codes 400–599
-          // handle non-JSON responses too
-          const errorData = await res.json().catch(() => ({})); 
+          const errorData = await res.json().catch(() => ({}));
           throw new Error(
-            errorData.message || `Request failed with status ${res.status}`);
+            errorData.message || `Request failed with status ${res.status}`
+          );
         }
         return res.json(); // return data for successful responses
       })
       .then((data) => {
         console.log("Login successful:", data);
-        // Dispatch your Redux action here
-        dispatch({ type: "addUserDetails", payload: { isAuthenticated : true  , ...data} });
+        const {accessToken,refreshToken} = data ;
+        console.log(accessToken);
+        dispatch({
+          type: "updateUserDetails",
+          payload: { isAuthenticated: true, accessToken,refreshToken },
+        });
+        // ✅ Navigate after successful login
+        navigate("/profile");
       })
       .catch((err) => {
         setDisplayMessage(err.message);
@@ -51,11 +56,13 @@ const Login = () => {
   };
   const submitForm = (e) => {
     e.preventDefault();
-    console.log("email is ", emailRef.current.value);
-    console.log("password is ", passwordRef.current.value);
-    authenticateUser(emailRef.current.value, passwordRef.current.value);
-    navigate("/profile");
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+    //console.log("email is ", email);
+    //console.log("password is ", password);
+    authenticateUser(email, password);
   };
+
   return (
     <>
       <div> User credentials is - </div>

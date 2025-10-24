@@ -1,7 +1,7 @@
 import { configureStore, createReducer } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 
-import {userDetails, userLoginReducer } from "./components/Login";
+import {getUserDetails, userLoginReducer } from "./components/Login";
 
 const preloadedState = {
   userReducer: {  

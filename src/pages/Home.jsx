@@ -5,7 +5,7 @@ const Home = () => {
         <div>
             <h1>Welcome to the Home Page</h1>
             <p>This is the home page of our application.</p>
-            <p> this app is using apis from https://dummyjson.com/ </p>
+            <p> this app is using apis from https://dummyjson.com/ for authentication.</p>
         </div>
     );
 }
