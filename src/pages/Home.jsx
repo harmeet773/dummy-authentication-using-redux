@@ -11,7 +11,7 @@ const Home = () => {
                 Login component fetches access token and refresh token from 'https://dummyjson.com/auth/login' 
                 by provideing user credentials and stores in it redux store.
             </p>
-            <p> Profile component fetches user data from 'https://dummyjson.com/auth/me' by providing access token</p>
+            <p> Profile component fetches user data from 'https://dummyjson.com/auth/me' by providing access token.</p>
 
         </div>
     );
